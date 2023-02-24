@@ -6,6 +6,8 @@ function openPlayerConfig() {
 function closePlayerConfig() {
   playerConfigOverlayElement.style.display = "none";
   backdropElement.style.display = "none";
+  formElement.firstElementChild.classList.remove('error');
+  errorsOutputElement.textContent = '';
 }
 
 function savePlayerConfig(event) {
@@ -14,9 +16,8 @@ function savePlayerConfig(event) {
   const enteredPlayername = formData.get("playername").trim();
 
   if (!enteredPlayername) {
-    errorsOutputElement.textContent = 'Please enter a valid name!';
+    event.target.firstElementChild.classList.add('error');
+    errorsOutputElement.textContent = "Please enter a valid name!";
     return;
   }
-
-  
 }
